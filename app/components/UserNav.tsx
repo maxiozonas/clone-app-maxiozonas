@@ -28,7 +28,7 @@ export default function UserNav() {
                     </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => signOut()}>Sign out</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => signOut()}>Cerrar sesion</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     )

@@ -14,10 +14,10 @@ interface NavbarProps {
 
 const links: NavbarProps[] = [
     { name: "Home", href: "/home" },
-    { name: "TV Shows", href: "/home/shows" },
-    { name: "Movies", href: "/home/movies" },
-    { name: "New & Popular", href: "/home/new-popular" },
-    { name: "My List", href: "/home/user/list" },
+    { name: "Series", href: "/home/shows" },
+    { name: "Peliculas", href: "/home/movies" },
+    { name: "Nuevo y popular", href: "/home/new-popular" },
+    { name: "Mi lista", href: "/home/user/list" },
 ]
 
 export default function Navbar() {
