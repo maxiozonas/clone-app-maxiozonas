@@ -1,6 +1,8 @@
 import Image from "next/image";
 import prisma from "../utils/db"
 import { MovieCard } from "./MovieCard";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../utils/auth";
 
 async function getData(userId: string) {
     const data = await prisma.movie.findMany({
@@ -31,7 +33,8 @@ async function getData(userId: string) {
 
 export default async function RecentlyAdded() {
 
-    const data = await getData();
+  const session = await getServerSession(authOptions);
+  const data = await getData(session?.user?.email as string);
 
     return (
         <div className="grid grid-cols-1 sm-grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
