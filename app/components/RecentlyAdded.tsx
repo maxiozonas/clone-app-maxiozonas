@@ -1,6 +1,6 @@
 import Image from "next/image";
 import prisma from "../utils/db"
-import MovieCard from "./MovieCard";
+import { MovieCard } from "./MovieCard";
 
 async function getData(userId: string) {
     const data = await prisma.movie.findMany({
@@ -40,7 +40,7 @@ export default async function RecentlyAdded() {
                     <Image
                         src={movie.imageString}
                         alt="movie"
-                        height={500}
+                        height={600}
                         width={400}
                         className="rounded-sm absolute w-full h-full object-cover"
                     />
