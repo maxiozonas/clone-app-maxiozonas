@@ -83,13 +83,11 @@ async function getData(category: string, userId: string) {
   }
 }
 
-export default async function CategoryPage({
-  params,
-}: {
-  params: { category: string };
-}) {
+export type paramsType = Promise<{ category: string }>;
 
-  const {category} = await params;
+export default async function CategoryPage(props: { params: paramsType }) {
+
+  const { category } = await props.params;
   const session = await getServerSession(authOptions);
   const data = await getData(category, session?.user?.email as string);
 
