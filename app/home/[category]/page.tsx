@@ -4,7 +4,6 @@ import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 
-// The function to fetch data based on the category and userId
 async function getData(category: string, userId: string) {
   switch (category) {
     case "shows": {
@@ -85,11 +84,11 @@ async function getData(category: string, userId: string) {
 }
 
 type Props = {
-  params: Promise<{ category: string }>;  // Aquí params sigue siendo una promesa
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }> // Cambia searchParams a una promesa
+  params: Promise<{ category: string }>; 
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }> | undefined;
 };
 
-export default async function CategoryPage({ params, searchParams }: Props) {
+export default async function CategoryPage({ params }: Props) {
   const { category } = await params;
   const session = await getServerSession(authOptions);
 
