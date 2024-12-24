@@ -91,7 +91,6 @@ type Props = {
 
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { category } = await params;
-  const { searchParams: paramsQuery } = await searchParams || {}; // Aquí resolvemos la promesa de searchParams
   const session = await getServerSession(authOptions);
 
   if (!category) {
