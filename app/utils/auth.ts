@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
         })
     ],
     callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
+        async signIn() {
             try {
                 return true
             } catch (error) {
