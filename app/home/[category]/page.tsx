@@ -83,13 +83,17 @@ async function getData(category: string, userId: string) {
   }
 }
 
-export default async function CategoryPage({
-  params,
-}: {
-  params: { category: string };
-}) {
+type Props = {
+  params: {
+    category: string;
+  };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
+
+export default async function CategoryPage({ params }: Props) {
+  const { category } = params;
   const session = await getServerSession(authOptions);
-  const data = await getData(params.category, session?.user?.email as string);
+  const data = await getData(category, session?.user?.email as string);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-5 sm:px-0 mt-10 gap-6">
