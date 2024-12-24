@@ -1,11 +1,11 @@
 import type { NextAuthOptions } from "next-auth"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import prisma from "./db"
-import GitHubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
-import EmailProvider from "next-auth/providers/email";
+import GitHubProvider from "next-auth/providers/github"
+import GoogleProvider from "next-auth/providers/google"
+import EmailProvider from "next-auth/providers/email"
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
     providers: [
         GitHubProvider({
@@ -26,6 +26,21 @@ export const authOptions = {
               }
             },
             from: process.env.EMAIL_FROM
-          })
-    ]
-} satisfies NextAuthOptions
+        })
+    ],
+    callbacks: {
+        async signIn({ user, account, profile, email, credentials }) {
+            try {
+                return true
+            } catch (error) {
+                console.error("Sign in error:", error)
+                return false
+            }
+        }
+    },
+    debug: process.env.NODE_ENV === 'development',
+    secret: process.env.NEXTAUTH_SECRET,
+    session: {
+        strategy: "database"
+    }
+}
