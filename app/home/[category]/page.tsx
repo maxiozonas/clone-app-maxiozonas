@@ -83,19 +83,14 @@ async function getData(category: string, userId: string) {
   }
 }
 
-type Props = {
-  params: Promise<{ category: string }>; 
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }> | undefined;
-};
+export default async function CategoryPage({
+  params,
+}: {
+  params: { category: string };
+}) {
 
-export default async function CategoryPage({ params }: Props) {
-  const { category } = await params;
+  const {category} = await params;
   const session = await getServerSession(authOptions);
-
-  if (!category) {
-    throw new Error('Category is required');
-  }
-
   const data = await getData(category, session?.user?.email as string);
 
   return (
