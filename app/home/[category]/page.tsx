@@ -85,12 +85,13 @@ async function getData(category: string, userId: string) {
 }
 
 type Props = {
-  params: Promise<{ category: string }>;
-  searchParams?: { [key: string]: string | string[] | undefined };
+  params: Promise<{ category: string }>;  // Aquí params sigue siendo una promesa
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }> // Cambia searchParams a una promesa
 };
 
-export default async function CategoryPage({ params }: Props) {
+export default async function CategoryPage({ params, searchParams }: Props) {
   const { category } = await params;
+  const { searchParams: paramsQuery } = await searchParams || {}; // Aquí resolvemos la promesa de searchParams
   const session = await getServerSession(authOptions);
 
   if (!category) {
