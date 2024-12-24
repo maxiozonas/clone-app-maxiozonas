@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function GoogleSigninButton() {
   return (
-    <Button onClick={() => signIn('google')} variant="outline" size="icon">
+    <Button onClick={async () => await signIn('google')} variant="outline" size="icon">
         <Image src={GoogleIcon} alt="google icon" className="w-6 h-6"/>
     </Button>
   );
